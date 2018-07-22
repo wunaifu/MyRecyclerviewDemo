@@ -1,4 +1,4 @@
-package com.wnf.recyclerviewdemo.expandable;
+package com.wnf.recyclerviewdemo.MyRecyclerview.expandable;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;

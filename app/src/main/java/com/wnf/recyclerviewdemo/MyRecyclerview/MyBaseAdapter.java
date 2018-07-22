@@ -16,7 +16,7 @@ import android.widget.RelativeLayout;
 
 import com.wnf.recyclerviewdemo.MyRecyclerview.animators.internal.ViewHelper;
 import com.wnf.recyclerviewdemo.R;
-import com.wnf.recyclerviewdemo.expandable.ExpandableLinearLayout;
+import com.wnf.recyclerviewdemo.MyRecyclerview.expandable.ExpandableLinearLayout;
 import com.yanxuwen.swipelibrary.SwipeLayout;
 
 import java.util.HashMap;

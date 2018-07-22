@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<com.wnf.recyclerviewdemo.expandable.ExpandableLinearLayout
+<com.wnf.recyclerviewdemo.MyRecyclerview.expandable.ExpandableLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/expandable_layout"
@@ -24,4 +24,4 @@
 
        </RelativeLayout>
 
-</com.wnf.recyclerviewdemo.expandable.ExpandableLinearLayout>
+</com.wnf.recyclerviewdemo.MyRecyclerview.expandable.ExpandableLinearLayout>

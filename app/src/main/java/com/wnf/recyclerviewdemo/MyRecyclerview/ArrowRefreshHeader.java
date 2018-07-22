@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.wnf.recyclerviewdemo.MyRecyclerview.progressindicator.AVLoadingIndicatorView;
 import com.wnf.recyclerviewdemo.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ArrowRefreshHeader extends BaseArrowRefreshHeader {
@@ -34,8 +35,8 @@ public class ArrowRefreshHeader extends BaseArrowRefreshHeader {
     private Animation mRotateDownAnim;
 
     private final int ROTATE_ANIM_DURATION = 180;
-    public static Date lastTimeDate = new Date();
-    private boolean flagU = false;
+//    public static Date lastTimeDate = new Date();
+//    private boolean flagU = false;
 
     public ArrowRefreshHeader(Context context) {
         super(context);
@@ -88,6 +89,7 @@ public class ArrowRefreshHeader extends BaseArrowRefreshHeader {
         mRotateDownAnim.setFillAfter(true);
 
         mHeaderTimeView = (TextView)findViewById(R.id.last_refresh_time);
+        mHeaderTimeView.setText(getSystemTime());
         measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mMeasuredHeight =getRefreshHeight();
     }
@@ -164,8 +166,9 @@ public class ArrowRefreshHeader extends BaseArrowRefreshHeader {
 
     @Override
     public void refreshComplate(){
-        lastTimeDate = new Date();
-        mHeaderTimeView.setText(friendlyTime(lastTimeDate));
+//        lastTimeDate = new Date();
+//        mHeaderTimeView.setText(friendlyTime(lastTimeDate));
+        mHeaderTimeView.setText(getSystemTime());
         setState(STATE_DONE);
         new Handler().postDelayed(new Runnable(){
             public void run() {
@@ -270,6 +273,10 @@ public class ArrowRefreshHeader extends BaseArrowRefreshHeader {
             return ct / 2592000 + "月前";
         }
         return ct / 31104000 + "年前";
+    }
+    private String getSystemTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
+        return dateFormat.format(new Date());
     }
 
 }

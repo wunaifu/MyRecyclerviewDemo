@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <Button
+        android:id="@+id/btn1"
+        android:text="下拉上拉刷新、左滑删除、展开项目"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn2"
+        android:text="下拉上拉刷新"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn3"
+        android:text="下拉上拉刷新、展开项目list、子项左滑删除、"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

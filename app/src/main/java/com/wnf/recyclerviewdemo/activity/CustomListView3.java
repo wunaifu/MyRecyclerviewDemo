@@ -1,8 +1,8 @@
 package com.wnf.recyclerviewdemo.activity;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,15 +14,17 @@ import com.wnf.recyclerviewdemo.MyRecyclerview.MyBaseAdapter;
 import com.wnf.recyclerviewdemo.MyRecyclerview.MyRecyclerView;
 import com.wnf.recyclerviewdemo.MyRecyclerview.ProgressStyle;
 import com.wnf.recyclerviewdemo.R;
+import com.wnf.recyclerviewdemo.adapter.ExpandChildAdapter;
 import com.wnf.recyclerviewdemo.adapter.MyChildAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class CustomListView extends AppCompatActivity {
+public class CustomListView3 extends AppCompatActivity {
 
     private MyRecyclerView mRecyclerView;
-    private MyChildAdapter mAdapter;
-    private ArrayList<String> listData;
+    private ExpandChildAdapter mAdapter;
+    private List<ListData> listData;
     private int refreshTime = 0;
     private int times = 0;
     @Override
@@ -49,7 +51,7 @@ public class CustomListView extends AppCompatActivity {
         head_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CustomListView.this,"这是头部视图",Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomListView3.this,"这是头部视图",Toast.LENGTH_SHORT).show();
                 Log.e("xxx", "头部");
             }
         });
@@ -65,8 +67,8 @@ public class CustomListView extends AppCompatActivity {
             }
         });
 
-        listData = new  ArrayList<String>();
-        mAdapter = new MyChildAdapter(this,listData);
+        listData = new  ArrayList<>();
+        mAdapter = new ExpandChildAdapter(this,listData);
         mRecyclerView.setAdapter(mAdapter);
         //不同于谷歌的SwipeRefreshLayout，SwipeRefreshLayout.setRefreshing(true);只是单纯的打开加载样式，但不会调用onRefresh方法
         //而这里会自动调用
@@ -75,14 +77,14 @@ public class CustomListView extends AppCompatActivity {
             @Override
             public void onItemClick(MyBaseAdapter.BaseViewHolder holder,View view, int position) {
                 holder.expand();
-                Toast.makeText(CustomListView.this,"单击"+position,Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomListView3.this,"单击"+listData.get(position).getItem(),Toast.LENGTH_SHORT).show();
                 Log.e("xxx", position + "");
             }
         });
         mAdapter.setOnItemLongClickListener(new MyBaseAdapter.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(MyBaseAdapter.BaseViewHolder holder,View view, int position) {
-                Toast.makeText(CustomListView.this,"长按"+position,Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomListView3.this,"长按"+listData.get(position).getItem(),Toast.LENGTH_SHORT).show();
 //                if(position==1){
 //                    holder.expand();
 //                }
@@ -98,8 +100,15 @@ public class CustomListView extends AppCompatActivity {
             public void run() {
 
                 listData.clear();
-                for(int i = 0; i < 10 ;i++){
-                    listData.add("item" + i );
+                for(int i = 0; i < 7 ;i++){
+                    ListData d = new ListData();
+                    d.setItem("父item" + i);
+                    List<String> s = new ArrayList<>();
+                    for (int j = 0; j < 5; j++) {
+                        s.add("父item" + i + "的子项"+j);
+                    }
+                    d.setList(s);
+                    listData.add(d);
                 }
                 mAdapter.notifyDataSetChanged();
                 mRecyclerView.refreshComplete();
@@ -112,8 +121,15 @@ public class CustomListView extends AppCompatActivity {
             new Handler().postDelayed(new Runnable(){
                 public void run() {
                     mRecyclerView.loadMoreComplete();
-                    for(int i = 10; i < 20 ;i++){
-                        listData.add("item" + i );
+                    for(int i = 7; i < 14 ;i++){
+                        ListData d = new ListData();
+                        d.setItem("父item" + i);
+                        List<String> s = new ArrayList<>();
+                        for (int j = 0; j < 5; j++) {
+                            s.add("父item" + i + "的子项"+j);
+                        }
+                        d.setList(s);
+                        listData.add(d);
                     }
                     mAdapter.notifyDataSetChanged();
                     mRecyclerView.refreshComplete();

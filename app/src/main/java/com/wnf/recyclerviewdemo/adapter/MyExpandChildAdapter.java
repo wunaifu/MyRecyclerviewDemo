@@ -3,14 +3,11 @@ package com.wnf.recyclerviewdemo.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.wnf.recyclerviewdemo.MyRecyclerview.DensityUtil;
 import com.wnf.recyclerviewdemo.MyRecyclerview.MyBaseAdapter;
 import com.wnf.recyclerviewdemo.R;
-
-
 import com.yanxuwen.swipelibrary.SwipeLayout;
 
 import java.util.List;
@@ -22,17 +19,17 @@ import butterknife.ButterKnife;
  * 作者：严旭文 on 2016/5/11 14:36
  * 邮箱：420255048@qq.com
  */
-public class MyChildAdapter extends MyBaseAdapter {
+public class MyExpandChildAdapter extends MyBaseAdapter {
     private List<String> mDataSet;
     private Context mContext;
     boolean isStaggered=false;
 
-    public MyChildAdapter(Context context, List<String> dataSet) {
+    public MyExpandChildAdapter(Context context, List<String> dataSet) {
         super(context, dataSet);
         this.mDataSet = dataSet;
         this.mContext = context;
     }
-    public MyChildAdapter(Context context, List<String> dataSet, boolean isStaggered) {
+    public MyExpandChildAdapter(Context context, List<String> dataSet, boolean isStaggered) {
         super(context, dataSet);
         this.mDataSet = dataSet;
         this.mContext = context;
@@ -40,44 +37,28 @@ public class MyChildAdapter extends MyBaseAdapter {
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //添加滑动
         addSwipe(R.layout.swipe_default2, SwipeLayout.ShowMode.LayDown, SwipeLayout.DragEdge.Right, true);
-        //添加展开
-        addExpand(R.layout.expand_default);
-        return new ViewHolder(setLayout(R.layout.item, parent));
+        //addExpand(R.layout.expand_default);
+        return new ViewHolder(setLayout(R.layout.item_expand, parent));
     }
 
     public void onBindViewHolder(BaseViewHolder holder, final int position) {
         final ViewHolder mViewHolder = (ViewHolder) holder;
         int adpterposition = holder.getCurPosition();
+        //设置控件信息
         mViewHolder.text.setText(mDataSet.get(position));
-        android.widget.LinearLayout.LayoutParams lp = new android.widget.LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        if (isStaggered && position % 2 == 0) {
-            lp.height = DensityUtil.dip2px(mContext,80);
-            lp.width = DensityUtil.dip2px(mContext,50);
-            lp.leftMargin= DensityUtil.dip2px(mContext,5);
-            lp.rightMargin=DensityUtil.dip2px(mContext,5);
-            lp.topMargin=DensityUtil.dip2px(mContext,5);
-            lp.bottomMargin=DensityUtil.dip2px(mContext,5);
-
-
-        }else{
-            lp.height = DensityUtil.dip2px(mContext,50);
-            lp.width = DensityUtil.dip2px(mContext,50);
-            lp.leftMargin= DensityUtil.dip2px(mContext,5);
-            lp.rightMargin=DensityUtil.dip2px(mContext,5);
-            lp.topMargin=DensityUtil.dip2px(mContext,5);
-            lp.bottomMargin=DensityUtil.dip2px(mContext,5);
-        }
-
-        mViewHolder.v_expand.setLayoutParams(lp);
+        mViewHolder.text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"点击"+mDataSet.get(position),Toast.LENGTH_SHORT).show();
+            }
+        });
         super.onBindViewHolder(holder, position);
-
     }
 
     class ViewHolder extends BaseViewHolder implements View.OnClickListener {
         private ViewHolder mViewHolder;
+        //绑定控件
         @Bind(R.id.text)
         TextView text;
         @Bind(R.id.v_expand)
@@ -89,11 +70,8 @@ public class MyChildAdapter extends MyBaseAdapter {
             super(itemView);
             ButterKnife.bind(this, itemView);
             mViewHolder = this;
-            //设置自动展开按钮，
-//            setExpandView(v_expand);
             swipeDelete.setOnClickListener(this);
         }
-
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
@@ -103,10 +81,5 @@ public class MyChildAdapter extends MyBaseAdapter {
 
             }
         }
-    }
-
-    public void add(String text, int position) {
-        mDataSet.add(position, text);
-        super.add(position);
     }
 }

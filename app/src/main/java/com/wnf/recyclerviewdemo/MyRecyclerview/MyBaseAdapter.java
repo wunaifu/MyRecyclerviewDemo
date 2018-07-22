@@ -162,9 +162,9 @@ public class MyBaseAdapter extends RecyclerView.Adapter<MyBaseAdapter.BaseViewHo
             }
         } else {
             if (getHorizontal()) {
-                view_swipe = (View) LayoutInflater.from(mContext).inflate(R.layout.swipe_default, null);
+                view_swipe = (View) LayoutInflater.from(mContext).inflate(R.layout.swipe_default2, null);
             } else {
-                view_swipe = (View) LayoutInflater.from(mContext).inflate(R.layout.swipe_default, parent, false);
+                view_swipe = (View) LayoutInflater.from(mContext).inflate(R.layout.swipe_default2, parent, false);
             }
         }
         layout_swipe.addView(view_swipe);

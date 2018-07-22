@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,8 @@ public class ArrowRefreshHeader extends BaseArrowRefreshHeader {
     private Animation mRotateDownAnim;
 
     private final int ROTATE_ANIM_DURATION = 180;
+    public static Date lastTimeDate = new Date();
+    private boolean flagU = false;
 
     public ArrowRefreshHeader(Context context) {
         super(context);
@@ -92,7 +95,7 @@ public class ArrowRefreshHeader extends BaseArrowRefreshHeader {
      * 获取刷新高度
      */
     public int getRefreshHeight(){
-        RelativeLayout header=(RelativeLayout)mContainer.findViewById(R.id.listview_header_content);
+        LinearLayout header=(LinearLayout)mContainer.findViewById(R.id.listview_header_content);
         return header.getMeasuredHeight();//获取头高度
 //        return getMeasuredHeight();//获取全部高度
     }
@@ -113,7 +116,9 @@ public class ArrowRefreshHeader extends BaseArrowRefreshHeader {
     }
 
     public void setState(int state) {
-        if (state == mState) return ;
+        if (state == mState){
+            return ;
+        }
 
         if (state == STATE_REFRESHING) {	// 显示进度
             mArrowImageView.clearAnimation();
@@ -159,7 +164,8 @@ public class ArrowRefreshHeader extends BaseArrowRefreshHeader {
 
     @Override
     public void refreshComplate(){
-        mHeaderTimeView.setText(friendlyTime(new Date()));
+        lastTimeDate = new Date();
+        mHeaderTimeView.setText(friendlyTime(lastTimeDate));
         setState(STATE_DONE);
         new Handler().postDelayed(new Runnable(){
             public void run() {

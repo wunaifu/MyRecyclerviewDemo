@@ -4,15 +4,12 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.wnf.recyclerviewdemo.MyRecyclerview.MyArrowRefreshHeader;
+import com.wnf.recyclerviewdemo.MyRecyclerview.ArrowRefreshHeader;
 import com.wnf.recyclerviewdemo.MyRecyclerview.MyBaseAdapter;
 import com.wnf.recyclerviewdemo.MyRecyclerview.MyRecyclerView;
 import com.wnf.recyclerviewdemo.MyRecyclerview.ProgressStyle;
@@ -37,7 +34,8 @@ public class CustomListView extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setArrowRefreshHeader(new MyArrowRefreshHeader(this));
+        mRecyclerView.setArrowRefreshHeader(new ArrowRefreshHeader(this));
+
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         mRecyclerView.setArrowImageView(R.drawable.ic_pulltorefresh_arrow);

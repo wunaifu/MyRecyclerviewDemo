@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <com.wnf.recyclerviewdemo.MyRecyclerview.MyRecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        </com.wnf.recyclerviewdemo.MyRecyclerview.MyRecyclerView>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/text_empty"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:background="#dcdcdc"
+        android:text="emptyView"
+        android:visibility="gone"/>
+</LinearLayout>

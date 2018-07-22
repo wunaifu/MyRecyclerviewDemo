@@ -14,7 +14,7 @@ import com.wnf.recyclerviewdemo.MyRecyclerview.MyBaseAdapter;
 import com.wnf.recyclerviewdemo.MyRecyclerview.MyRecyclerView;
 import com.wnf.recyclerviewdemo.MyRecyclerview.ProgressStyle;
 import com.wnf.recyclerviewdemo.R;
-import com.wnf.recyclerviewdemo.adapter.ExpandChildAdapter;
+import com.wnf.recyclerviewdemo.adapter.ExpandFatherAdapter;
 import com.wnf.recyclerviewdemo.adapter.MyChildAdapter;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.List;
 public class CustomListView3 extends AppCompatActivity {
 
     private MyRecyclerView mRecyclerView;
-    private ExpandChildAdapter mAdapter;
+    private ExpandFatherAdapter mAdapter;
     private List<ListData> listData;
     private int refreshTime = 0;
     private int times = 0;
@@ -68,7 +68,7 @@ public class CustomListView3 extends AppCompatActivity {
         });
 
         listData = new  ArrayList<>();
-        mAdapter = new ExpandChildAdapter(this,listData);
+        mAdapter = new ExpandFatherAdapter(this,listData);
         mRecyclerView.setAdapter(mAdapter);
         //不同于谷歌的SwipeRefreshLayout，SwipeRefreshLayout.setRefreshing(true);只是单纯的打开加载样式，但不会调用onRefresh方法
         //而这里会自动调用

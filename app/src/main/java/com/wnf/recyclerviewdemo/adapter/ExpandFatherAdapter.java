@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
  * 作者：严旭文 on 2016/5/11 14:36
  * 邮箱：420255048@qq.com
  */
-public class ExpandChildAdapter extends MyBaseAdapter {
+public class ExpandFatherAdapter extends MyBaseAdapter {
     private List<ListData> mDataSet;
     private Context mContext;
     boolean isStaggered=false;
@@ -39,12 +39,12 @@ public class ExpandChildAdapter extends MyBaseAdapter {
     private int refreshTime = 0;
     private int times = 0;
 
-    public ExpandChildAdapter(Context context, List<ListData> dataSet) {
+    public ExpandFatherAdapter(Context context, List<ListData> dataSet) {
         super(context, dataSet);
         this.mDataSet = dataSet;
         this.mContext = context;
     }
-    public ExpandChildAdapter(Context context, List<ListData> dataSet, boolean isStaggered) {
+    public ExpandFatherAdapter(Context context, List<ListData> dataSet, boolean isStaggered) {
         super(context, dataSet);
         this.mDataSet = dataSet;
         this.mContext = context;

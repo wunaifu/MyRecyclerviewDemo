@@ -56,7 +56,7 @@ public class LoadingMoreFooter extends LinearLayout {
         mText = new TextView(context);
         int padding=DensityUtil.dip2px(context,15);
         mText.setPadding(0,padding,padding,padding);
-        mText.setText("正在加载...");
+        mText.setText(mContext.getText(R.string.listview_loading));
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins( (int)getResources().getDimension(R.dimen.textandiconmargin),0,0,0 );
